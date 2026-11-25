@@ -5,3 +5,4 @@ preview.html
 __pycache__/
 .DS_Store
 .privacy-allow.local
+scripts/privacy-check.sh
