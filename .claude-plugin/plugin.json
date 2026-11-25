@@ -16,5 +16,6 @@
     "scaffold"
   ],
   "homepage": "https://github.com/calebgrimes/artifact-app-kit",
-  "repository": "https://github.com/calebgrimes/artifact-app-kit"
+  "repository": "https://github.com/calebgrimes/artifact-app-kit",
+  "icon": ".claude-plugin/icon.png"
 }
