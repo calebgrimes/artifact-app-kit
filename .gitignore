@@ -1,0 +1,7 @@
+# Private name list for scripts/privacy-check.sh. Never commit it.
+.privacy-patterns.local
+# Built by qa/build_preview.py
+preview.html
+__pycache__/
+.DS_Store
+.privacy-allow.local

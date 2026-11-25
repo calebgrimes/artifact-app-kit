@@ -1,0 +1,5 @@
+# Change workers make their worktrees here.
+.claude/worktrees/
+# Built by qa/build_preview.py
+qa/preview.html
+.DS_Store

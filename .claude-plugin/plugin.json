@@ -1,0 +1,20 @@
+{
+  "name": "artifact-app-kit",
+  "displayName": "Artifact App Kit",
+  "version": "0.1.0",
+  "description": "Build your own desktop app from a Claude artifact, with feedback controls built in: point at any part of the app, write a note, and a Claude Code worker changes the app for you.",
+  "author": {
+    "name": "Caleb Grimes",
+    "url": "https://github.com/calebgrimes"
+  },
+  "license": "MIT",
+  "keywords": [
+    "artifact",
+    "desktop-app",
+    "feedback",
+    "claude-code",
+    "scaffold"
+  ],
+  "homepage": "https://github.com/calebgrimes/artifact-app-kit",
+  "repository": "https://github.com/calebgrimes/artifact-app-kit"
+}
