@@ -1,4 +1,3 @@
-#!/bin/bash
 # privacy-check.sh: fail if the kit holds personal data. Run it before every commit and before you publish.
 #
 #   bash scripts/privacy-check.sh
