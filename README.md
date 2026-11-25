@@ -29,7 +29,6 @@ Then start a new app with `/artifact-app-kit:new`, or just say "make me a deskto
 | Command `/artifact-app-kit:feedback` | Starts `feedback-controls` |
 | `templates/` | The starter app: `index.html`, `verify.py`, `qa/` (fake desktop layer, preview, click tests), `changes.md`, `intent.md`, `README.md` |
 | `scripts/scaffold.py` | Copies the templates into a new folder and fills in the app's name and folder |
-| `scripts/privacy-check.sh` | Fails if the kit holds personal data (for people who change the kit) |
 
 Each app you make has:
 - `intent.md`: why the app exists, what it is, what is out of scope, decisions, and how it is checked.
@@ -76,5 +75,5 @@ Each app you make has:
 
 ## For people who change the kit
 - Check the plugin: `claude plugin validate .`
-- Check for personal data: `bash scripts/privacy-check.sh`. Put private names in `.privacy-patterns.local` (one per line; git ignores that file).
+- Check for personal data before you publish: search the files for your own names, paths, and links.
 - Test the templates with a dry run: `python3 scripts/scaffold.py --name "Test App" --dir /tmp/test-app`, then `python3 /tmp/test-app/verify.py --selftest` and `node /tmp/test-app/qa/clicks.mjs`.
