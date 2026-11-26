@@ -9,7 +9,7 @@
       "name": "artifact-app-kit",
       "source": "./",
       "description": "Build your own desktop app from a Claude artifact, with feedback controls built in.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "category": "productivity",
       "tags": [
         "artifact",

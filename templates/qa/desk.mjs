@@ -19,7 +19,7 @@
 // Pass any --hash (for example --hash qa) to keep the What's new tour shut. #dark and #light force a theme.
 // Limit: this drives the fake layer, not the installed app. Check the real app with screencapture (see README.md).
 import { spawn, execFileSync } from "node:child_process";
-import { readFileSync, writeFileSync, mkdtempSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdtempSync, existsSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -90,4 +90,6 @@ try {
   ws.close();
 } catch (e) { console.log("✖ " + (e.message || e)); code = 1; }
 chrome.kill();
+if (chrome.exitCode === null && chrome.signalCode === null) await new Promise((r) => { chrome.once("exit", r); setTimeout(r, 3000); });
+rmSync(dir, { recursive: true, force: true }); // each run makes a new Chrome profile; left behind, a test loop fills the disk
 process.exit(code);
