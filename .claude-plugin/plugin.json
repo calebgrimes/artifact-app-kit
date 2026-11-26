@@ -1,7 +1,7 @@
 {
   "name": "artifact-app-kit",
   "displayName": "Artifact App Kit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Build your own desktop app from a Claude artifact, with feedback controls built in: point at any part of the app, write a note, and a Claude Code worker changes the app for you.",
   "author": {
     "name": "Caleb Grimes",
