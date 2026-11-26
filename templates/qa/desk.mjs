@@ -40,6 +40,15 @@ const [W, H] = size.split("x").map(Number);
 const file = execFileSync("python3", [join(here, "build_preview.py")], { encoding: "utf8" }).trim();
 const dir = mkdtempSync(join(tmpdir(), "desk-"));
 const chrome = spawn(CHROME, ["--headless=new", "--disable-gpu", "--hide-scrollbars", `--window-size=${W},${H}`, "--remote-debugging-port=0", `--user-data-dir=${dir}`, "about:blank"], { stdio: "ignore" });
+let done = false;
+async function finish(code) { // also on Ctrl-C or a kill, so a stopped run leaves no profile behind
+  if (done) return; done = true;
+  chrome.kill();
+  if (chrome.exitCode === null && chrome.signalCode === null) await new Promise((r) => { chrome.once("exit", r); setTimeout(r, 3000); });
+  rmSync(dir, { recursive: true, force: true }); // each run makes a new Chrome profile; left behind, a test loop fills the disk
+  process.exit(code);
+}
+for (const s of ["SIGINT", "SIGTERM", "SIGHUP"]) process.on(s, () => finish(130));
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 async function port() {
   for (let i = 0; i < 100; i++) { const f = join(dir, "DevToolsActivePort"); if (existsSync(f)) return readFileSync(f, "utf8").split("\n")[0]; await sleep(100); }
@@ -89,7 +98,4 @@ try {
   }
   ws.close();
 } catch (e) { console.log("✖ " + (e.message || e)); code = 1; }
-chrome.kill();
-if (chrome.exitCode === null && chrome.signalCode === null) await new Promise((r) => { chrome.once("exit", r); setTimeout(r, 3000); });
-rmSync(dir, { recursive: true, force: true }); // each run makes a new Chrome profile; left behind, a test loop fills the disk
-process.exit(code);
+await finish(code);
